@@ -1,0 +1,188 @@
+/* Estilos generales */
+h1 {
+    text-align: center;
+}
+
+/* Contenedor de productos */
+.div_productos {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px; 
+    justify-content: center; 
+}
+
+/* Tarjetas */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 25rem;
+    margin: 0; 
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; 
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-text {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.btn-warning, .btn-danger {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Estilos de la cabecera de la página */
+.encabezado_pagina {
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    margin-right: 20px;
+    font-size: 1.1rem;
+}
+
+/* Estilos del pie de página */
+footer {
+    margin-top: 50px;
+    padding: 40px 0;
+    background-color: #f8f9fa;
+}
+
+footer a {
+    text-decoration: none;
+    color: #000;
+}
+
+footer .text-uppercase {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Contenedor general */
+.container {
+    max-width: 1200px;
+}
+
+/* Iconos */
+.bi {
+    font-size: 1.5rem;
+}
+
+/* Estilos generales para los modales */
+.modal-content {
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Encabezado del modal */
+.modal-header {
+    border-bottom: 1px solid #e9ecef; 
+    background-color: #f8f9fa; 
+    padding: 1rem; 
+}
+
+/* Botón de cerrar en el modal */
+.modal-header .btn-close {
+    background: #6c757d; 
+    border: none; 
+}
+
+/* Cuerpo del modal */
+.modal-body {
+    padding: 2rem; 
+    background-color: #ffffff; 
+}
+
+/* Pie del modal */
+.modal-footer {
+    border-top: 1px solid #e9ecef; 
+    padding: 1rem; 
+    background-color: #f8f9fa; 
+}
+
+/* Botones en el pie del modal */
+.modal-footer .btn {
+    margin: 0.5rem; /* Margen alrededor de los botones */
+}
+
+/* Modales con fondo oscuro */
+.modal.fade .modal-dialog {
+    max-width: 600px; 
+}
+
+/* Estilos para el formulario dentro del modal */
+#editForm .form-control {
+    border-radius: 4px; 
+    box-shadow: none; 
+}
+
+/* Botones del formulario */
+#editForm .btn-primary {
+    background-color: #007bff; 
+    border: none; 
+}
+
+#editForm .btn-primary:hover {
+    background-color: #0056b3; 
+}
+
+#editForm .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); 
+}
+
+/* Estilos de los botones en el modal */
+.modal-footer .btn-secondary {
+    background-color: #6c757d; 
+    border: none; 
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #5a6268; 
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .div_productos {
+        gap: 10px; 
+    }
+
+    .card {
+        width: 100%; 
+    }
+}
