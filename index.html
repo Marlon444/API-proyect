@@ -5,33 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-COMMERCE</title>
     <script src="main.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <header class="encabezado_pagina">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">MOTICOS AZAROSAS</a>
+                
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    MOTICOS AZAROSAS                 
+                    <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                        </li>
+
                     </ul>
     
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Buscar productos..." aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
-                    </form>
-    
                     <button type="button" class="btn btn-outline-primary ms-3" data-bs-toggle="modal" data-bs-target="#createProductModal">
-                        Crear Producto
+                        Publicar Moto
                     </button>
-                    
+    
                     <button type="button" class="btn btn-outline-primary ms-3" data-bs-toggle="modal" data-bs-target="#loginModal">
                         Iniciar Sesión
                     </button>
@@ -40,12 +39,15 @@
         </div>
     </header>
     
+    
 <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="createProductModalLabel">Agregar Producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form id="createProductForm">
@@ -65,7 +67,7 @@
                         <label for="productImage" class="form-label">URL de la imagen</label>
                         <input type="url" class="form-control" id="productImage" placeholder="URL de la imagen" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Montar nueva motico</button>
+                    <button type="submit" class="btn btn-primary">Agregar moto</button>
                 </form>
             </div>
         </div>
@@ -79,7 +81,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -111,7 +115,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Editar</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form id="editForm">
@@ -156,22 +162,30 @@
                         Tienda en línea dedicada a ofrecer las mejores motocicletas a precios accesibles. Para mas info al interno, porfavor cero patos.
                     </p>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Enlaces</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-dark">Inicio</a></li>
-                        <li><a href="#" class="text-dark">Todas las motos</a></li>
-                        <li><a href="#" class="text-dark">Ofertas</a></li>
-                        <li><a href="#" class="text-dark">Contacto</a></li>
-                    </ul>
-                </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Opciones</h5>
+                        <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Volver al inicio</a></li>
+                        <li><a href="#" id="contactLink" class="text-dark">Contactarnos</a></li>
 
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Síguenos</h5>
-                    <a href="#" class="text-dark me-3"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-dark me-3"><i class="bi bi-instagram"></i></a>
+                        </ul>
+                    </div>
+            
+                <div class="social-media">
+                    <h5 class="text-uppercase">Siguenos</h5>
+                    <a href="https://twitter.com/" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://wa.me/" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
+                
+                </div>
+                
             </div>
         </div>
         <div class="text-center p-3 bg-dark text-white">

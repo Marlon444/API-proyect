@@ -16,18 +16,22 @@ function loadProducts() {
 
         data.forEach(product => {
             const images = JSON.parse(product.images) || [];
+            const shortDescription = product.description.substring(0, 100); // Mostrar los primeros 100 caracteres
 
             const myhtml = `
                 <div class="card" style="width: 18rem; margin: 10px;">
-                    <img src="${images[0] || 'default-image.jpg'}" class="card-img-top" alt="..." >
+                    <img src="${images[0] || 'default-image.jpg'}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${product.title}</h5>
-                        <p class="card-text">${product.description}</p>
+                        <div class="description-container">
+                            <p class="card-text description" id="desc-${product.id}">${shortDescription}...</p>
+                            <button class="btn btn-link toggle-description" data-id="${product.id}">Ver más</button>
+                        </div>
                         <p class="card-text">Valor: ${product.value}</p>
                         <a href="#" class="btn btn-warning edit-btn" data-id="${product.id}" data-bs-toggle="modal" data-bs-target="#editModal">Editar</a>
                         <a href="#" class="btn btn-danger delete-btn" data-id="${product.id}">Eliminar</a>
                     </div>
-                </div
+                </div>
             `;
 
             const il = document.createElement("li");
@@ -42,11 +46,33 @@ function loadProducts() {
         document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', handleDeleteClick);
         });
+
+        // Toggle descripción completa
+        document.querySelectorAll('.toggle-description').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const id = button.getAttribute('data-id');
+                const descElem = document.getElementById(`desc-${id}`);
+                const product = data.find(prod => prod.id == id);
+
+                if (descElem.classList.contains('expanded')) {
+                    descElem.innerHTML = product.description.substring(0, 100) + "...";
+                    button.textContent = "Ver más";
+                } else {
+                    descElem.innerHTML = product.description;
+                    button.textContent = "Ver menos";
+                }
+
+                descElem.classList.toggle('expanded');
+            });
+        });
     })
     .catch(error => {
         console.error('Error al cargar los productos:', error);
     });
 }
+
+
 
 
 function handleEditClick(event) {
@@ -177,5 +203,15 @@ document.getElementById('createProductForm').addEventListener('submit', function
     })
     .catch(error => {
         console.error('Error al crear el producto:', error);
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const contactLink = document.getElementById('contactLink');
+    
+    contactLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        contactLink.textContent = 'Tel: +123 456 7890';
+        contactLink.href = 'tel:+1234567890';
     });
 });

@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 /* Estilos generales */
 h1 {
     text-align: center;
+}
+
+/* Cambia el color de fondo de la página */
+body {
+    background-color: #5f5f5f; /* Cambia este valor por el color que prefieras */
 }
 
 /* Contenedor de productos */
@@ -9,6 +15,18 @@ h1 {
     flex-wrap: wrap; 
     gap: 15px; 
     justify-content: center; 
+}
+
+/* ... resto del código CSS ... */
+
+
+/* Separador del logo y el título */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+.navbar-brand i {
+    margin-left: 10px; 
 }
 
 /* Tarjetas */
@@ -29,6 +47,9 @@ h1 {
 .card-img-top {
     width: 100%;
     height: 250px;
+    margin: 8px auto; /* Centra la imagen horizontalmente con un margen superior e inferior */
+    border: 10px solid #ffffff; /* Agrega un borde gris claro alrededor de la imagen */
+    border-radius: 5px; /* Opcional: agrega bordes redondeados al borde */
     object-fit: cover; 
 }
 
@@ -38,26 +59,45 @@ h1 {
 
 .card-text {
     font-size: 15px;
-    color: #555;
+    color: #000000;
     margin-bottom: 15px;
 }
 
+/* Estilos de botones (ajustados) */
 .btn-warning, .btn-danger {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    margin-right: 10px;
-    border-radius: 4px;
-    font-weight: bold;
+    min-height: 4vh; /* Ajusta la altura mínima */
+    padding: 10px 20px; /* Ajusta el padding para hacerlos más pequeños */
+    font-size: 1.2rem; /* Ajusta el tamaño de fuente */
+    position: relative;
+    margin: 0 10px; /* Espacio lateral para mantenerlos uno al lado del otro */
+    color: white;
+    border-radius: 40px;    
+    box-shadow: 0 0 0 0 rgba(143, 64, 248, 0.5), 0 0 0 0 rgba(39, 200, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    display: inline-block; /* Asegura que los botones estén uno al lado del otro */
 }
 
-.btn-warning:hover {
-    background-color: #e0a800;
-    border-color: #d39e00;
+.btn-warning::after, .btn-danger::after {
+    content: "";
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: -50px;
+    left: -100px;
+    background: #13ff13;
+    background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);
+    z-index: -1;
+    transition: transform 0.5s ease;
 }
 
-.btn-danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
+.btn-warning:hover, .btn-danger:hover {
+    transform: translate(0, -4px); /* Reduce el efecto hover */
+    box-shadow: 10px -10px 20px 0 rgba(44, 229, 253, 0.5), -10px 10px 20px 0 rgba(183, 0, 255, 0.794);
+}
+
+.btn-warning:hover::after, .btn-danger:hover::after {
+    transform: rotate(150deg);
 }
 
 /* Estilos de la cabecera de la página */
@@ -119,8 +159,16 @@ footer .text-uppercase {
 
 /* Botón de cerrar en el modal */
 .modal-header .btn-close {
-    background: #6c757d; 
-    border: none; 
+    position: relative; /* Necesario para usar 'top' y 'left' */
+    width: 40px; /* Ancho del botón */
+    height: 40px; /* Alto del botón */
+    color: #6c757d; /* Color de la X */
+    font-size: 3.5rem; /* Tamaño de la X */
+    display: flex; /* Usar flexbox para centrar */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    border: none; /* Sin borde */
+    background: none; /* Sin fondo */
 }
 
 /* Cuerpo del modal */
@@ -152,21 +200,7 @@ footer .text-uppercase {
     box-shadow: none; 
 }
 
-/* Botones del formulario */
-#editForm .btn-primary {
-    background-color: #007bff; 
-    border: none; 
-}
-
-#editForm .btn-primary:hover {
-    background-color: #0056b3; 
-}
-
-#editForm .btn-primary:focus {
-    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); 
-}
-
-/* Estilos de los botones en el modal */
+/* Estilos de los botones en el modal (originales) */
 .modal-footer .btn-secondary {
     background-color: #6c757d; 
     border: none; 
@@ -174,6 +208,17 @@ footer .text-uppercase {
 
 .modal-footer .btn-secondary:hover {
     background-color: #5a6268; 
+}
+
+.social-media a {
+    margin: 0 10px; /* Espaciado entre íconos */
+    color: #000; /* Color de los íconos */
+    font-size: 24px; /* Tamaño de los íconos */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.social-media a:hover {
+    color: #007bff; /* Color al pasar el ratón */
 }
 
 /* Ajustes para dispositivos móviles */
@@ -185,4 +230,32 @@ footer .text-uppercase {
     .card {
         width: 100%; 
     }
+}
+/*tamaño descripcion*/
+.description-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle-description {
+    padding-left: 0;
+    text-align: left;
+    font-size: 0.9rem; /* Ajusta el tamaño si lo necesitas */
+}
+
+.card-text.description {
+    overflow: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 0; /* Quitar margen entre descripción y botón */
+}
+
+.card-text.description.expanded {
+    white-space: normal;
+    overflow: visible;
+}
+
+.card-body {
+    text-align: left;
 }
