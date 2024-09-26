@@ -259,3 +259,44 @@ footer .text-uppercase {
 .card-body {
     text-align: left;
 }
+
+/*BOTONES*/
+
+/* Estilos para los botones de publicar moto e iniciar sesión */
+.btn-publicar, .btn-iniciar {
+    min-height: 4vh;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    position: relative;
+    margin: 0 10px;
+    color: white;
+    border-radius: 40px;
+    box-shadow: 0 0 0 0 rgba(143, 64, 248, 0.5), 0 0 0 0 rgba(39, 200, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    display: inline-block;
+    background-color: #007bff; /* Color inicial del botón */
+    border: none; /* Elimina los bordes */
+}
+
+.btn-publicar::after, .btn-iniciar::after {
+    content: "";
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: -50px;
+    left: -100px;
+    background: #13ff13;
+    background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);
+    z-index: -1;
+    transition: transform 0.5s ease;
+}
+
+.btn-publicar:hover, .btn-iniciar:hover {
+    transform: translate(0, -4px);
+    box-shadow: 10px -10px 20px 0 rgba(44, 229, 253, 0.5), -10px 10px 20px 0 rgba(183, 0, 255, 0.794);
+}
+
+.btn-publicar:hover::after, .btn-iniciar:hover::after {
+    transform: rotate(150deg);
+}
