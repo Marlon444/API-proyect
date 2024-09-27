@@ -17,6 +17,9 @@ function loadProducts() {
         data.forEach(product => {
             const images = JSON.parse(product.images) || [];
             const shortDescription = product.description.substring(0, 100); // Mostrar los primeros 100 caracteres
+            //fecha
+            const formattedDate = formatDate(product.date, "yyyy-mm-dd");
+
 
             const myhtml = `
                 <div class="card" style="width: 18rem; margin: 10px;">
@@ -28,6 +31,8 @@ function loadProducts() {
                             <button class="btn btn-link toggle-description" data-id="${product.id}">Ver más</button>
                         </div>
                         <p class="card-text">Valor: ${product.value}</p>
+    
+                        <p class="card-text">Fecha: ${formattedDate}</p>
                         <a href="#" class="btn btn-warning edit-btn" data-id="${product.id}" data-bs-toggle="modal" data-bs-target="#editModal">Editar</a>
                         <a href="#" class="btn btn-danger delete-btn" data-id="${product.id}">Eliminar</a>
                     </div>
@@ -90,6 +95,9 @@ function handleEditClick(event) {
         document.getElementById('editProductTitle').value = product.title;
         document.getElementById('editProductDescription').value = product.description;
         document.getElementById('editProductValue').value = product.value;
+        //fecha
+        const formattedDate = formatDate(product.date, "yyyy-mm-dd");
+        document.getElementById('editProductDate').value = formattedDate;
         document.getElementById('editProductImage').value = JSON.parse(product.images)[0] || '';
     })
     .catch(error => {
@@ -104,12 +112,15 @@ document.getElementById('editForm').addEventListener('submit', function(event) {
     const title = document.getElementById('editProductTitle').value;
     const description = document.getElementById('editProductDescription').value;
     const value = parseFloat(document.getElementById('editProductValue').value);
+    // fecha 
+    const date = document.getElementById('editProductDate').value;  
     const image = document.getElementById('editProductImage').value;
 
     const body = JSON.stringify({
         title: title,
         description: description,
         value: value,
+        date: date,
         images: [image]
     });
 
@@ -171,13 +182,17 @@ document.getElementById('createProductForm').addEventListener('submit', function
     const title = document.getElementById('productTitle').value;
     const description = document.getElementById('productDescription').value;
     const value = parseFloat(document.getElementById('productValue').value);
+        // Obtener la fecha desde el input y formatearla
+    const dateInput = document.getElementById('productDate').value;  
+    const formattedDate = formatDate(dateInput, "yyyy-mm-dd");  
     const image = document.getElementById('productImage').value;
 
     const body = JSON.stringify({
         title: title,
         description: description,
         value: value,
-        images: [image]
+        images: [image],
+    
     });
 
     console.log("Datos enviados para crear:", body);
@@ -215,3 +230,18 @@ document.addEventListener("DOMContentLoaded", function() {
         contactLink.href = 'tel:+1234567890';
     });
 });
+
+// funcion para fecha
+function formatDate(dateString, format) {
+    const date = new Date(dateString);
+    
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);  
+    const day = ('0' + date.getDate()).slice(-2);  
+
+    if (format === "yyyy-mm-dd") {
+        return `${year}-${month}-${day}`;
+    }
+
+    return dateString;
+}
