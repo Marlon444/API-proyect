@@ -1,0 +1,514 @@
+@import url("https://fonts.googleapis.com/css2?family=Ewert&display=swap");
+/* Estilos generales */
+h1 {
+    text-align: center;
+}
+
+.ewert-regular {
+    font-family: "Ewert", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Sección de filtros */
+.filters-section {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 2rem;
+}
+
+.filters-section .form-control,
+.filters-section .form-select {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.filters-section .form-control:focus,
+.filters-section .form-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+.filters-section .btn {
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filters-section .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor de productos */
+.div_productos {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px; 
+    justify-content: center; 
+}
+
+/* Tarjetas */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 25rem;
+    margin: 0; 
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; 
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-text {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.btn-warning, .btn-danger {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Estilos de la cabecera de la página */
+.encabezado_pagina {
+    background-color: #dc3545;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    margin-right: 20px;
+    font-size: 1.1rem;
+    color: white !important;
+}
+
+
+
+/* Ajustes para elementos del navbar con fondo rojo */
+.encabezado_pagina .form-control {
+    border-color: #dc3545;
+}
+
+
+.encabezado_pagina .btn-outline-success:hover {
+    color: #dc3545;
+}
+
+
+
+.encabezado_pagina .btn-outline-primary:hover {
+    color: #dc3545;
+}
+
+/* Estilos del pie de página */
+footer {
+    margin-top: 50px;
+    padding: 40px 0;
+    background-color: #f8f9fa;
+}
+
+footer a {
+    text-decoration: none;
+    color: #000;
+}
+
+footer .text-uppercase {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Contenedor general */
+.container {
+    max-width: 1200px;
+}
+
+/* Iconos */
+.bi {
+    font-size: 1.5rem;
+}
+
+/* Iconos de redes sociales */
+footer .bi {
+    font-size: 2rem;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+    color: #6c757d;
+}
+
+footer .bi:hover {
+    color: #007bff;
+    transform: scale(1.2);
+}
+
+/* Iconos específicos de redes sociales */
+footer .bi-facebook:hover {
+    color: #1877f2;
+}
+
+footer .bi-twitter:hover {
+    color: #1da1f2;
+}
+
+footer .bi-instagram:hover {
+    color: #e4405f;
+}
+
+/* Estilos para el footer organizado */
+footer h5 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+footer h6 {
+    color: #555;
+    font-weight: 600;
+}
+
+footer p {
+    color: #666;
+    line-height: 1.6;
+}
+
+footer .list-unstyled li {
+    margin-bottom: 0.5rem;
+}
+
+footer .list-unstyled a {
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+footer .list-unstyled a:hover {
+    color: #007bff;
+}
+
+/* Iconos de redes sociales mejorados */
+footer .bi {
+    transition: all 0.3s ease;
+}
+
+footer .bi:hover {
+    transform: scale(1.1);
+}
+
+/* Información de contacto */
+footer .bi-telephone,
+footer .bi-envelope {
+    color: #007bff;
+    font-size: 1rem;
+}
+
+/* Checkmarks para servicios */
+footer .bi-check-circle {
+    font-size: 1rem;
+}
+
+/* Estilos para modales de productos */
+.product-modal {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-container {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.product-modal-image {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    background: white;
+}
+
+.product-details {
+    background: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brand-name {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.product-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.price-section {
+    margin-bottom: 1rem;
+}
+
+.price-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-right: 0.5rem;
+}
+
+.price-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #6f42c1;
+}
+
+.rating-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+}
+
+.rating-number {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+}
+
+.stars .bi-star-fill {
+    color: #ffc107;
+    font-size: 1rem;
+}
+
+.reviews-count {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.specifications {
+    margin-bottom: 1rem;
+}
+
+.spec-item {
+    font-size: 0.9rem;
+    color: #666;
+    background: #f8f9fa;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.color-options {
+    margin-bottom: 1rem;
+}
+
+.color-label {
+    font-size: 0.9rem;
+    color: #666;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.color-circles {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.color-circle:hover {
+    transform: scale(1.1);
+}
+
+.color-circle.white {
+    background: white;
+    border-color: #333;
+}
+
+.color-circle.green {
+    background: #28a745;
+}
+
+.color-circle.blue {
+    background: #007bff;
+}
+
+.color-circle.red {
+    background: #dc3545;
+}
+
+.color-circle.black {
+    background: #333;
+}
+
+.product-description {
+    flex-grow: 1;
+}
+
+.product-description p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.modal-actions {
+    margin-top: auto;
+}
+
+.modal-actions .btn {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Responsive para modales */
+@media (max-width: 768px) {
+    .product-modal .row {
+        flex-direction: column;
+    }
+    
+    .product-image-container {
+        min-height: 250px;
+    }
+    
+    .product-modal-image {
+        max-height: 250px;
+    }
+    
+    .product-details {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Estilos generales para los modales */
+.modal-content {
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Encabezado del modal */
+.modal-header {
+    border-bottom: 1px solid #e9ecef; 
+    background-color: #f8f9fa; 
+    padding: 1rem; 
+}
+
+/* Botón de cerrar en el modal */
+.modal-header .btn-close {
+    background: #6c757d; 
+    border: none; 
+}
+
+/* Cuerpo del modal */
+.modal-body {
+    padding: 2rem; 
+    background-color: #ffffff; 
+}
+
+/* Pie del modal */
+.modal-footer {
+    border-top: 1px solid #e9ecef; 
+    padding: 1rem; 
+    background-color: #f8f9fa; 
+}
+
+/* Botones en el pie del modal */
+.modal-footer .btn {
+    margin: 0.5rem; /* Margen alrededor de los botones */
+}
+
+/* Modales con fondo oscuro */
+.modal.fade .modal-dialog {
+    max-width: 600px; 
+}
+
+/* Estilos para el formulario dentro del modal */
+#editForm .form-control {
+    border-radius: 4px; 
+    box-shadow: none; 
+}
+
+/* Botones del formulario */
+#editForm .btn-primary {
+    background-color: #007bff; 
+    border: none; 
+}
+
+#editForm .btn-primary:hover {
+    background-color: #0056b3; 
+}
+
+#editForm .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); 
+}
+
+/* Estilos de los botones en el modal */
+.modal-footer .btn-secondary {
+    background-color: #6c757d; 
+    border: none; 
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #5a6268; 
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .div_productos {
+        gap: 10px; 
+    }
+
+    .card {
+        width: 100%; 
+    }
+}

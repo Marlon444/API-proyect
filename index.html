@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-COMMERCE</title>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Ewert&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <header class="encabezado_pagina">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg ">
+                <a class="navbar-brand ewert-regular" href="#">MotoMarket</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        </li>
+                    </ul>
+
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Buscar productos..."
+                            aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+
+                    <button type="button" class="btn btn-outline-primary ms-3" data-bs-toggle="modal"
+                        data-bs-target="#createProductModal">
+                        Crear Producto
+                    </button>
+
+                    <button type="button" class="btn btn-outline-primary ms-3" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">
+                        Iniciar Sesión
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createProductModalLabel">Agregar Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createProductForm">
+                        <div class="mb-3">
+                            <label for="productTitle" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="productTitle" placeholder="Título del producto"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="productDescription"
+                                placeholder="Descripción del producto" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productValue" class="form-label">Valor</label>
+                            <input type="number" class="form-control" id="productValue" placeholder="Valor del producto"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productImage" class="form-label">URL de la imagen</label>
+                            <input type="url" class="form-control" id="productImage" placeholder="URL de la imagen"
+                                required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear Producto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="username"
+                                placeholder="Ingresa tu nombre de usuario">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password"
+                                placeholder="Ingresa tu contraseña">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Recuérdame</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Iniciar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <badge class="container" style="text-align: center;">
+        <h1>Bienvenido a MotoMarket</h1>
+    </badge>
+
+
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <input type="hidden" id="editProductId">
+                        <div class="mb-3">
+                            <label for="editProductTitle" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="editProductTitle"
+                                placeholder="Título del producto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductDescription" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="editProductDescription"
+                                placeholder="Descripción del producto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductValue" class="form-label">Valor</label>
+                            <input type="number" step="0.01" class="form-control" id="editProductValue"
+                                placeholder="Valor del producto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductImage" class="form-label">URL de la imagen</label>
+                            <input type="text" class="form-control" id="editProductImage" placeholder="URL de la imagen"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Sección de filtros -->
+    <section class="filters-section py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Buscar motos...">
+                        <button class="btn btn-outline-secondary" type="button" id="searchBtn">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="citySelect">
+                        <option value="">Seleccionar ciudad...</option>
+                        <option value="bogota">Bogotá D.C.</option>
+                        <option value="medellin">Medellín</option>
+                        <option value="cali">Cali</option>
+                        <option value="barranquilla">Barranquilla</option>
+                        <option value="cartagena">Cartagena</option>
+                        <option value="bucaramanga">Bucaramanga</option>
+                        <option value="pereira">Pereira</option>
+                        <option value="santa-marta">Santa Marta</option>
+                        <option value="ibague">Ibagué</option>
+                        <option value="pasto">Pasto</option>
+                        <option value="manizales">Manizales</option>
+                        <option value="villavicencio">Villavicencio</option>
+                        <option value="neiva">Neiva</option>
+                        <option value="armenia">Armenia</option>
+                        <option value="valledupar">Valledupar</option>
+                        <option value="monteria">Montería</option>
+                        <option value="santa-rosa">Santa Rosa de Cabal</option>
+                        <option value="tunja">Tunja</option>
+                        <option value="florencia">Florencia</option>
+                        <option value="popayan">Popayán</option>
+                        <option value="sincelejo">Sincelejo</option>
+                        <option value="riohacha">Riohacha</option>
+                        <option value="quibdo">Quibdó</option>
+                        <option value="arauca">Arauca</option>
+                        <option value="yopal">Yopal</option>
+                        <option value="mocoa">Mocoa</option>
+                        <option value="leticia">Leticia</option>
+                        <option value="inirida">Inírida</option>
+                        <option value="san-jose">San José del Guaviare</option>
+                        <option value="puerto-carreno">Puerto Carreño</option>
+                        <option value="mitú">Mitú</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex gap-2">
+                        <select class="form-select" id="sortSelect">
+                            <option value="">Ordenar por...</option>
+                            <option value="price-low">Precio: Menor a Mayor</option>
+                            <option value="price-high">Precio: Mayor a Menor</option>
+                            <option value="name">Nombre A-Z</option>
+                        </select>
+                        <button class="btn btn-outline-primary" id="filterBtn">
+                            <i class="bi bi-funnel"></i> Filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container my-5">
+        <!-- Contenedores de motos -->
+        <div class="row justify-content-center g-4">
+            <!-- Moto 1 -->
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="card flex-fill text-center">
+                    <img src="moto1.jpg" class="card-img-top" alt="Moto 1" style="height: 220px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div style="height: 40px;"></div>
+                        <div class="mt-auto">
+                            <button class="btn btn-warning me-2" data-bs-toggle="modal"
+                                data-bs-target="#moto1Modal">Leer descripción</button>
+                            <button class="btn btn-danger">Contactar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Moto 2 -->
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="card flex-fill text-center">
+                    <img src="moto2.jpg" class="card-img-top" alt="Moto 2" style="height: 220px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div style="height: 40px;"></div>
+                        <div class="mt-auto">
+                            <button class="btn btn-warning me-2" data-bs-toggle="modal"
+                                data-bs-target="#moto2Modal">Leer descripción</button>
+                            <button class="btn btn-danger">Contactar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Moto 3 -->
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="card flex-fill text-center">
+                    <img src="moto3.jpg" class="card-img-top" alt="Moto 3" style="height: 220px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div style="height: 40px;"></div>
+                        <div class="mt-auto">
+                            <button class="btn btn-warning me-2" data-bs-toggle="modal"
+                                data-bs-target="#moto3Modal">Leer descripción</button>
+                            <button class="btn btn-danger">Contactar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light text-center text-lg-start">
+    
+        <div class="modal fade" id="moto1Modal" tabindex="-1" aria-labelledby="moto1ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content product-modal">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <div class="product-image-container">
+                                    <img src="moto1.jpg" alt="Hero Hunk 160R" class="product-modal-image">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="product-details p-4">
+                                    <div class="brand-name">Hero Motos</div>
+                                    <h4 class="product-title">Hunk 160R 4V</h4>
+                                    <div class="price-section">
+                                        <span class="price-label">Desde</span>
+                                        <span class="price-value">$ 8.500.000</span>
+                                    </div>
+                                    <div class="rating-section">
+                                        <span class="rating-number">4.8</span>
+                                        <div class="stars">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <span class="reviews-count">(127)</span>
+                                    </div>
+                                    <div class="specifications">
+                                        <span class="spec-item">Moto Mecánica · 160cc</span>
+                                    </div>
+                                    <div class="color-options mt-3">
+                                        <span class="color-label">Colores disponibles:</span>
+                                        <div class="color-circles">
+                                            <div class="color-circle white"></div>
+                                            <div class="color-circle green"></div>
+                                            <div class="color-circle black"></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-description mt-3">
+                                        <p>La Hero Hunk 160R es una moto naked de media cilindrada, ideal para ciudad y carretera. Motor bicilíndrico de 160cc, ágil, ligera y con un diseño moderno.</p>
+                                    </div>
+                                    <div class="modal-actions mt-4">
+                                        <button class="btn btn-primary btn-lg me-2">Cotizar</button>
+                                        <button class="btn btn-outline-primary btn-lg">Más información</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Moto 2 -->
+        <div class="modal fade" id="moto2Modal" tabindex="-1" aria-labelledby="moto2ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content product-modal">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <div class="product-image-container">
+                                    <img src="moto2.jpg" alt="Yamaha MT-03" class="product-modal-image">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="product-details p-4">
+                                    <div class="brand-name">Yamaha</div>
+                                    <h4 class="product-title">MT-03</h4>
+                                    <div class="price-section">
+                                        <span class="price-label">Desde</span>
+                                        <span class="price-value">$ 12.500.000</span>
+                                    </div>
+                                    <div class="rating-section">
+                                        <span class="rating-number">4.9</span>
+                                        <div class="stars">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <span class="reviews-count">(89)</span>
+                                    </div>
+                                    <div class="specifications">
+                                        <span class="spec-item">Moto Mecánica · 300cc</span>
+                                    </div>
+                                    <div class="color-options mt-3">
+                                        <span class="color-label">Colores disponibles:</span>
+                                        <div class="color-circles">
+                                            <div class="color-circle white"></div>
+                                            <div class="color-circle blue"></div>
+                                            <div class="color-circle black"></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-description mt-3">
+                                        <p>La Yamaha MT-03 es una moto versátil, cómoda y eficiente. Motor de 300cc, bajo consumo y excelente para trayectos urbanos y viajes cortos.</p>
+                                    </div>
+                                    <div class="modal-actions mt-4">
+                                        <button class="btn btn-primary btn-lg me-2">Cotizar</button>
+                                        <button class="btn btn-outline-primary btn-lg">Más información</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Moto 3 -->
+        <div class="modal fade" id="moto3Modal" tabindex="-1" aria-labelledby="moto3ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content product-modal">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <div class="product-image-container">
+                                    <img src="moto3.jpg" alt="Suzuki Gixxer 150" class="product-modal-image">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="product-details p-4">
+                                    <div class="brand-name">Suzuki</div>
+                                    <h4 class="product-title">Gixxer 150 FI</h4>
+                                    <div class="price-section">
+                                        <span class="price-label">Desde</span>
+                                        <span class="price-value">$ 6.800.000</span>
+                                    </div>
+                                    <div class="rating-section">
+                                        <span class="rating-number">4.7</span>
+                                        <div class="stars">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <span class="reviews-count">(156)</span>
+                                    </div>
+                                    <div class="specifications">
+                                        <span class="spec-item">Moto Mecánica · 155cc</span>
+                                    </div>
+                                    <div class="color-options mt-3">
+                                        <span class="color-label">Colores disponibles:</span>
+                                        <div class="color-circles">
+                                            <div class="color-circle white"></div>
+                                            <div class="color-circle red"></div>
+                                            <div class="color-circle black"></div>
+                                        </div>
+                                    </div>
+                                    <div class="product-description mt-3">
+                                        <p>La Suzuki Gixxer destaca por su motor de 155cc, gran respuesta y fiabilidad. Perfecta para quienes buscan diversión y rendimiento.</p>
+                                    </div>
+                                    <div class="modal-actions mt-4">
+                                        <button class="btn btn-primary btn-lg me-2">Cotizar</button>
+                                        <button class="btn btn-outline-primary btn-lg">Más información</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container ">
+            <p>Motocicletas
+            <h3>Venta de motos 2026 en Colombia
+            </h3>
+            ¿Estás en la búsqueda de tu moto ideal? En MotoMarket Colombia, ofrecemos un extenso y diverso catálogo que
+            seguro te sorprenderá. Aquí encontrarás una amplia gama de motos de las marcas más prestigiosas y
+            reconocidas del mercado, incluyendo nombres como Benelli, TVS, Victory, Kawasaki, entre muchas otras.
+            Nuestro proceso de financiamiento es rápido, flexible y completamente en línea, lo que te permitirá adquirir
+            la motocicleta de tus sueños de manera sencilla y sin complicaciones. No importa cuál sea tu estilo o
+            necesidad, en MotoMarket Colombia queremos ayudarte a hacer realidad tu pasión por las motos. ¡Explora hoy mismo
+            nuestro catálogo y encuentra tu compañera ideal de viaje!
+            </p>
+        </div>
+
+
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase fw-bold mb-3">MotoMarket Colombia</h5>
+                    <p class="mb-3">
+                        Tu destino número uno para encontrar la moto perfecta. 
+                        Ofrecemos las mejores marcas con financiamiento flexible y proceso 100% en línea.
+                    </p>
+                    <div class="d-flex flex-column">
+                        <span class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Crédito para motos</span>
+                        <span class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Compara tu moto</span>
+                        <span class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Financiamiento rápido</span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase fw-bold mb-3">Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Inicio</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Productos</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Ofertas</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase fw-bold mb-3">Servicios</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Financiamiento</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Seguros</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Mantenimiento</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Repuestos</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase fw-bold mb-3">Síguenos</h5>
+                    <p class="mb-3">Mantente al día con nuestras últimas ofertas y novedades</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-decoration-none">
+                            <i class="bi bi-facebook fs-3 text-primary"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none">
+                            <i class="bi bi-twitter fs-3 text-info"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none">
+                            <i class="bi bi-instagram fs-3 text-danger"></i>
+                        </a>
+                    </div>
+                    <div class="mt-3">
+                        <h6 class="fw-bold">Contacto</h6>
+                        <p class="mb-1"><i class="bi bi-telephone me-2"></i>+57 (1) 234-5678</p>
+                        <p class="mb-1"><i class="bi bi-envelope me-2"></i>info@motomarket.co</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3 bg-dark text-white">
+            © 2024 E-COMMERCE. Todos los derechos reservados.
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
