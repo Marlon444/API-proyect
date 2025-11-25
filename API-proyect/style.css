@@ -300,3 +300,5 @@ footer .text-uppercase {
 .btn-publicar:hover::after, .btn-iniciar:hover::after {
     transform: rotate(150deg);
 }
+
+
